@@ -2,7 +2,7 @@
 
 Name:           sancp
 Version:        1.6.1
-Release:        %mkrel 1
+Release:        %mkrel 3
 Epoch:          0
 Summary:        Security Analyst Network Connection Profiler 
 License:        GPL
@@ -21,8 +21,8 @@ Requires(post): rpm-helper
 Requires(postun): rpm-helper
 Requires(pre):  rpm-helper
 Requires(preun): rpm-helper
-BuildRequires:  libpcap-devel
-BuildRequires:  libprelude-devel
+BuildRequires:  pcap-devel
+BuildRequires:  prelude-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 
 %description
@@ -63,10 +63,10 @@ handle the connection.
 %{__rm} -rf %{buildroot}
 
 %{__mkdir_p} %{buildroot}%{_bindir}
-%{__cp} -a sancp %{buildroot}%{_bindir}/%{name}
+%{__cp} -a sancp %{buildroot}%{_bindir}/sancp
 
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/%{name}
-%{__cp} -a etc/sancp/sancp.conf %{buildroot}%{_sysconfdir}/%{name}/%{name}.conf
+%{__cp} -a etc/sancp/sancp.conf %{buildroot}%{_sysconfdir}/%{name}/sancp.conf
 
 %{__mkdir_p} %{buildroot}%{_initrddir}
 %{__cp} -a %{SOURCE2} %{buildroot}%{_initrddir}/%{name}
@@ -74,7 +74,7 @@ handle the connection.
 %{__mkdir_p} %{buildroot}%{_localstatedir}/lib/%{name}
 
 %{__mkdir_p} %{buildroot}%{_logdir}/%{name}
-/bin/touch %{buildroot}%{_logdir}/%{name}/%{name}.log
+/bin/touch %{buildroot}%{_logdir}/%{name}/sancp.log
 
 %{__mkdir_p} %{buildroot}%{_sysconfdir}/logrotate.d
 %{__cp} -a %{SOURCE3} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
@@ -104,7 +104,7 @@ EOF
 %_preun_service %{name}
 
 %post
-%create_ghostfile %{_logdir}/%{name}/%{name}.log %{name} %{name} 0660
+%create_ghostfile %{_logdir}/%{name}/sancp.log %{name} %{name} 0660
 %_post_service %{name}
 
 %postun
@@ -114,15 +114,13 @@ EOF
 %files
 %defattr(0644,root,root,0755)
 %doc LICENSE contrib docs/* README.urpmi
-%attr(0755,root,root) %{_bindir}/%{name}
+%attr(0755,root,root) %{_bindir}/sancp
 %attr(0755,root,root) %{_initrddir}/%{name}
 %attr(0700,sancp,sancp) %dir %{_localstatedir}/lib/%{name}
 %attr(0750,sancp,sancp) %dir %{_logdir}/%{name}
-%ghost %attr(0660,sancp,sancp) %dir %{_logdir}/%{name}/%{name}.log
+%ghost %attr(0660,sancp,sancp) %dir %{_logdir}/%{name}/sancp.log
 %dir %{_sysconfdir}/%{name}
-%config(noreplace) %{_sysconfdir}/%{name}/%{name}.conf
+%config(noreplace) %{_sysconfdir}/%{name}/sancp.conf
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %dir %attr(0750,sancp,sancp) %{_sysconfdir}/prelude/profile/%{name}
-
-
