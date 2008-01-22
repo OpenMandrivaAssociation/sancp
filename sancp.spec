@@ -2,10 +2,10 @@
 
 Name:           sancp
 Version:        1.6.1
-Release:        %mkrel 3
+Release:        %mkrel 4
 Epoch:          0
 Summary:        Security Analyst Network Connection Profiler 
-License:        GPL
+License:        GPLv2+
 Group:          Networking/Other
 URL:            http://www.metre.net/sancp.html
 Source0:        http://www.metre.net/files/sancp-%{version}.tar.gz
