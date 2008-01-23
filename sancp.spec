@@ -1,22 +1,17 @@
 %define _localstatedir %{_var}
 
 Name:           sancp
-Version:        1.6.1
-Release:        %mkrel 5
+Version:        1.6.2
+Release:        %mkrel 0.C.5.1
 Epoch:          0
 Summary:        Security Analyst Network Connection Profiler 
 License:        GPLv2+
 Group:          Networking/Other
 URL:            http://www.metre.net/sancp.html
-Source0:        http://www.metre.net/files/sancp-%{version}.tar.gz
-Source1:        http://www.metre.net/files/sancp-%{version}.tar.gz.md5
+Source0:        http://metre.net/files/sancp-%{version}-candidate.C.5.tar.gz
+#Source1:       http://metre.net/files/sancp-%{version}-candidate.C.5.tar.gz.md5
 Source2:        sancp.init
 Source3:        sancp.logrotate
-Patch0:         sancp-1.6.1.fix200511.a.patch
-Patch1:         sancp-1.6.1.fix200511.b.patch
-Patch2:         sancp-1.6.1.fix200601.c.patch
-Patch3:         sancp-1.6.1.fix200606.d.patch
-Patch4:         sancp-1.6.1-prelude.patch
 Requires(post): rpm-helper
 Requires(postun): rpm-helper
 Requires(pre):  rpm-helper
@@ -48,12 +43,7 @@ packet statistics, TCP flags, p0f data, and other vitals about how we
 handle the connection.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+%setup -q -n sancp-%{version}-candidate.C.5
 
 %build
 %serverbuild
