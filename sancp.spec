@@ -2,7 +2,7 @@
 
 Name:           sancp
 Version:        1.6.1
-Release:        %mkrel 4
+Release:        %mkrel 5
 Epoch:          0
 Summary:        Security Analyst Network Connection Profiler 
 License:        GPLv2+
