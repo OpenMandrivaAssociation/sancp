@@ -2,7 +2,7 @@
 
 Name:           sancp
 Version:        1.6.2
-Release:        %mkrel 0.C.5.1
+Release:        %mkrel 0.C.5.2
 Epoch:          0
 Summary:        Security Analyst Network Connection Profiler 
 License:        GPLv2+
@@ -12,6 +12,7 @@ Source0:        http://metre.net/files/sancp-%{version}-candidate.C.5.tar.gz
 #Source1:       http://metre.net/files/sancp-%{version}-candidate.C.5.tar.gz.md5
 Source2:        sancp.init
 Source3:        sancp.logrotate
+Patch0:         sancp-1.6.2-candidate.C.5-no-u_int64_t.patch
 Requires(post): rpm-helper
 Requires(postun): rpm-helper
 Requires(pre):  rpm-helper
@@ -44,6 +45,7 @@ handle the connection.
 
 %prep
 %setup -q -n sancp-%{version}-candidate.C.5
+%patch0 -p1
 
 %build
 %serverbuild
