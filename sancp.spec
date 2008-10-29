@@ -19,7 +19,7 @@ Requires(pre):  rpm-helper
 Requires(preun): rpm-helper
 BuildRequires:  pcap-devel
 BuildRequires:  prelude-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This is a network security tool designed to collect statistical 
