@@ -1,0 +1,4 @@
+sources:
+  "sancp-1.6.2-candidate.C.5.tar.gz:"	32a60aa6513d1357ca3798fbdaa5f3bac829443e
+  "sancp.init:"	24f1f5c2eaf793e6bab952d1f6e8ee2111c5bb52
+  "sancp.logrotate:"	81810e9ea62bb5ba57c49ee28cba2c95c9ab1035

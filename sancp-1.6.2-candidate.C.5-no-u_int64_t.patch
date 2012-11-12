@@ -1,0 +1,23 @@
+--- sancp-1.6.2-candidate.C.5/fileHandle.h.orig	2008-01-25 03:44:21.000000000 +0100
++++ sancp-1.6.2-candidate.C.5/fileHandle.h	2008-01-25 03:44:36.000000000 +0100
+@@ -39,8 +39,6 @@
+ #define WRITE_MODE 1
+ #define APPEND_MODE 2
+ 
+-typedef unsigned long long u_int64_t;
+-
+ #ifndef PLATFORM_BSD
+ 
+ #define LOCK_SH         1       /* shared lock */
+--- sancp-1.6.2-candidate.C.5/gvars.h.orig	2008-01-25 03:45:54.000000000 +0100
++++ sancp-1.6.2-candidate.C.5/gvars.h	2008-01-25 03:46:11.000000000 +0100
+@@ -17,9 +17,6 @@
+ 
+ typedef u_int bpf_u_int32;
+ typedef struct pcap pcap_t;
+-#ifndef u_int64_t
+-typedef unsigned long long int u_int64_t;
+-#endif
+ typedef unsigned char u_int8_t;
+ typedef unsigned int u_int32_t;
+ typedef unsigned short int u_int16_t;
