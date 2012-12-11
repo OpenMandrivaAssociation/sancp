@@ -116,3 +116,46 @@ EOF
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %dir %attr(0750,sancp,sancp) %{_sysconfdir}/prelude/profile/%{name}
+
+
+%changelog
+* Tue Sep 15 2009 Thierry Vignaud <tvignaud@mandriva.com> 0:1.6.2-0.C.5.3mdv2010.0
++ Revision: 442814
+- rebuild
+
+* Wed Oct 29 2008 Oden Eriksson <oeriksson@mandriva.com> 0:1.6.2-0.C.5.2mdv2009.1
++ Revision: 298355
+- rebuilt against libpcap-1.0.0
+
+* Fri Jan 25 2008 David Walluck <walluck@mandriva.org> 0:1.6.2-0.C.5.2mdv2008.1
++ Revision: 157827
+- patch for 64-bit
+- remove old 1.6.1 files
+- 1.6.2-candidate.C.5
+
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - rebuild with fixed %%serverbuild macro
+
+* Tue Jan 22 2008 Funda Wang <fundawang@mandriva.org> 0:1.6.1-4mdv2008.1
++ Revision: 156356
+- rebuild
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Thu Oct 25 2007 David Walluck <walluck@mandriva.org> 0:1.6.1-3mdv2008.1
++ Revision: 101957
+- fix BuildRequires
+
+
+* Mon Oct 23 2006 David Walluck <walluck@mandriva.org> 1.6.1-1mdv2007.0
++ Revision: 71666
++ Status: not released
+- Import sancp
+
+* Sun Oct 22 2006 David Walluck <walluck@mandriva.org> 0:1.6.1-1mdv2007.1
+- release
+

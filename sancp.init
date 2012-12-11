@@ -1,0 +1,98 @@
+#!/bin/sh
+#
+# sancp         Start/Stop the network connection profiler
+#
+# chkconfig: 2345 40 60
+# description:  records packets for further analysis of network traffic
+#		i.e. to research alerts to see the entire conversation
+#
+### BEGIN INIT INFO
+# Provides:       sancp
+# Required-Start: $network
+# Required-Stop:  $network
+# Default-Start:  2 3 4 5
+# Default-Stop:   0 1 6
+# Short-Description: Network connection profiler
+# Description:    Records packets for further analysis of network traffic, \
+#                 i.e., to research alerts to see the entire conversation
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Set main configuration options here
+SANCP_ARCHIVE_DIR="/var/log/sancp"
+SANCP_CONFIG="-c /etc/sancp/sancp.conf"
+SANCP_INTERFACE="-i eth0"
+SANCP_USER="-u sancp"
+SANCP_GROUP="-g sancp"
+#
+# UNCOMMENT/modify the following options you want enabled at startup
+#
+#SANCP_RECORD_ICMP_TYPE_CODE="-I"
+#SANCP_HUMAN_READABLE_OUTPUT="-H"
+#SANCP_DEBUG_PCAP_RAW_MODE="-A"
+
+SANCP_OUTPUT_DIR="-d $SANCP_ARCHIVE_DIR"
+
+#
+# We'll add up all the options above and use them
+#
+SANCP_OPTIONS=" -D $SANCP_USER $SANCP_GROUP $SANCP_RECORD_ICMP_TYPE_CODE $SANCP_HUMAN_READABLE_OUTPUT $SANCP_OPTIONS"
+
+# Source user config, if it's readable
+if [ -r /etc/sysconfig/sancp ]; then
+  . /etc/sysconfig/sancp
+fi
+
+# See how we were called.
+case "$1" in
+  start)
+        echo -n "Starting sancp: "
+	daemon /usr/bin/sancp $SANCP_OUTPUT_DIR $SANCP_INTERFACE $SANCP_CONFIG $SANCP_FILTER $SANCP_DEFAULT_TIMEOUT $SANCP_OPTIONS >/dev/null 2>&1
+	RETVAL=$?
+	PID1=$!
+	[ $RETVAL -eq 0 ] && success || failure
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/sancp
+        [ $RETVAL -eq 0 ] && echo $PID1 > /var/run/sancp.pid
+	echo
+	;;
+  stop)
+        echo -n "Stopping sancp: "
+        killproc sancp
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/nepenthes
+        ;;
+  stats)
+	echo -n "Dumping sancp rule stats"
+	killproc sancp -USR1
+        RETVAL=$?
+        echo
+	;;
+  now)
+	echo -n "Dumping sancp connections going on right now"
+	killproc sancp -USR2
+        RETVAL=$?
+        echo
+	;;
+  reload)
+	echo -n "Reloading sancp: "
+	killproc sancp -HUP
+        RETVAL=$?
+        echo
+	;;
+  restart)
+        $0 stop
+        $0 start
+        ;;
+  status)
+        status sancp
+        ;;
+  *)
+        echo "Usage: $0 {now|start|stats|stop|reload|restart|status}"
+        exit 1
+esac
+
+exit 0
