@@ -7,7 +7,7 @@ Epoch:          0
 Summary:        Security Analyst Network Connection Profiler 
 License:        GPLv2+
 Group:          Networking/Other
-URL:            http://www.metre.net/sancp.html
+URL:            https://www.metre.net/sancp.html
 Source0:        http://metre.net/files/sancp-%{version}-candidate.C.5.tar.gz
 #Source1:       http://metre.net/files/sancp-%{version}-candidate.C.5.tar.gz.md5
 Source2:        sancp.init
