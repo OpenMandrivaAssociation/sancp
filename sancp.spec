@@ -17,6 +17,7 @@ Requires(post): rpm-helper
 Requires(postun): rpm-helper
 Requires(pre):  rpm-helper
 Requires(preun): rpm-helper
+BuildRequires:	make
 BuildRequires:  pcap-devel
 BuildRequires:  prelude-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
